@@ -1,0 +1,2 @@
+# FSOCNetworking
+在AFNetworking基础上，封装YTKRequest，提供更面向业务处理的网络层
