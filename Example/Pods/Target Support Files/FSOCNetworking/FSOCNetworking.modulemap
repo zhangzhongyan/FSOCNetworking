@@ -1,0 +1,6 @@
+framework module FSOCNetworking {
+  umbrella header "FSOCNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}

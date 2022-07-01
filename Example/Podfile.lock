@@ -1,0 +1,63 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - FSOCNetworking (1.0.0):
+    - FSOCNetworking/Client (= 1.0.0)
+    - FSOCNetworking/Model (= 1.0.0)
+    - FSOCNetworking/Request (= 1.0.0)
+    - FSOCNetworking/Security (= 1.0.0)
+    - FSOCNetworking/Utils (= 1.0.0)
+    - FSOCNetworking/YTKNetwork (= 1.0.0)
+  - FSOCNetworking/Client (1.0.0):
+    - FSOCNetworking/Request
+    - FSOCNetworking/Utils
+    - FSOCUtils/JSONUtils
+    - MJExtension (~> 3.0.15.1)
+  - FSOCNetworking/Model (1.0.0)
+  - FSOCNetworking/Request (1.0.0):
+    - FSOCNetworking/Model
+    - FSOCNetworking/YTKNetwork
+  - FSOCNetworking/Security (1.0.0):
+    - AFNetworking
+  - FSOCNetworking/Utils (1.0.0)
+  - FSOCNetworking/YTKNetwork (1.0.0):
+    - AFNetworking (~> 4.0.1)
+  - FSOCUtils/JSONUtils (1.0.1):
+    - MJExtension
+  - MJExtension (3.0.15.1)
+
+DEPENDENCIES:
+  - FSOCNetworking (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - FSOCUtils
+    - MJExtension
+
+EXTERNAL SOURCES:
+  FSOCNetworking:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  FSOCNetworking: 48e1e5d6ff300b227a8a13fff4bf751cd0ec9dad
+  FSOCUtils: 0b05738a16468620bebe604a0e8d7752e1955751
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+
+PODFILE CHECKSUM: f9a518b71d9f8b632938e96dae49acb0bbe5a8c3
+
+COCOAPODS: 1.10.1

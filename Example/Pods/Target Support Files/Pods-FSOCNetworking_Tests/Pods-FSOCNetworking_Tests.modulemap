@@ -1,0 +1,6 @@
+framework module Pods_FSOCNetworking_Tests {
+  umbrella header "Pods-FSOCNetworking_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
