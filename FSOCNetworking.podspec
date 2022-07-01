@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-主要用于定制网络数据，进行业务处理
+主要用于定制网络数据，进行业务处理。提供打印定义、参数定义、状态码定义，面向移动端业务。
                        DESC
 
   s.homepage         = 'https://github.com/zhangzhongyan/FSOCNetworking'

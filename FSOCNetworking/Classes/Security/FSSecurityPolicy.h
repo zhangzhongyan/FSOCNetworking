@@ -5,7 +5,7 @@
 //  Created by 张忠燕 on 2022/1/13.
 //
 
-#import "AFSecurityPolicy.h"
+#import <AFNetworking/AFNetworking.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
