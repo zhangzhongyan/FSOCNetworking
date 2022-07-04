@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FSOCNetworking'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = '在AFNetworking基础上，封装YTKRequest，提供更面向业务处理的网络层'
 
 # This description is used to generate tags and improve search results.
@@ -67,7 +67,7 @@ Pod::Spec.new do |s|
   # Client仓库
   s.subspec 'Client' do |ss|
     ss.source_files = 'FSOCNetworking/Classes/Client/*{h,m}'
-    ss.dependency 'MJExtension', '~> 3.0.15.1'
+    ss.dependency 'MJExtension'
     ss.dependency 'FSOCNetworking/Request'
     ss.dependency 'FSOCNetworking/Utils'
     ss.dependency 'FSOCUtils/JSONUtils'
