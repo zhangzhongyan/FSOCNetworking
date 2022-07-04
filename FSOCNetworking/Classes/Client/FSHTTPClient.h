@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, EVNetworkReachabilityStatus) {
 };
 
 // 请求完成回调block
-typedef void(^EVNetworkCompletedBlock)(FSNetworkData *data,__kindof FSBaseRequest *request);
+typedef void(^FSNetworkCompletedBlock)(FSNetworkData *data,__kindof FSBaseRequest *request);
 
 @interface FSHTTPClient : NSObject
 
@@ -54,7 +54,7 @@ typedef void(^EVNetworkCompletedBlock)(FSNetworkData *data,__kindof FSBaseReques
 /// 发送封装请求
 - (void)sendRequest:(FSBaseRequest *)request
         entityClass:(nullable Class)entityClass
-    completionBlock:(nullable EVNetworkCompletedBlock)completionBlock;
+    completionBlock:(nullable FSNetworkCompletedBlock)completionBlock;
 
 @end
 

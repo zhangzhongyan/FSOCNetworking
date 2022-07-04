@@ -11,5 +11,6 @@
 
     #import "FSBaseRequest.h"
     #import "FSHTTPClient.h"
+    #import "FSSecurityPolicy.h"
 
 #endif /* FSOCNetworking_h */

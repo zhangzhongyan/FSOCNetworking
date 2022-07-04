@@ -158,7 +158,7 @@
 
 - (void)sendRequest:(FSBaseRequest *)request
         entityClass:(nullable Class)entityClass
-    completionBlock:(nullable EVNetworkCompletedBlock)completionBlock
+    completionBlock:(nullable FSNetworkCompletedBlock)completionBlock
 {
     //处理请求参数
     id requestArgument = request.requestArgument;
