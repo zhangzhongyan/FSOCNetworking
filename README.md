@@ -31,9 +31,9 @@ pod 'FSOCNetworking'
 ```
 //ResponseModel
 {
-	"status":10000,
- 	"message":"Success", 
- 	"datas":id
+    "status":10000,
+    "message":"Success", 
+    "datas":id
 }
 ```
 - 文件上传/文件下载
