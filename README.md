@@ -323,7 +323,7 @@ FSNetworkData：网络响应模型
 ### Post请求
 聚焦业务URL、参数、数据模型
 
-```
+```objective-c
 @weakify(self);
 [MBProgressHUD showLoadingInView:self.view];
 [[FSHTTPClient shared] postRequestWithUrl:@"api/userInfo" parameters:params entityClass:FSUserInfoEntity.class complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
@@ -342,7 +342,7 @@ FSNetworkData：网络响应模型
 
 ### Post上传文件
 
-```
+```objective-c
 NSData *imageData = [NSData data];
 NSString *fileName = [NSString stringWithFormat:@"%ld_iOS.jpg", (long)[[NSDate date] timeIntervalSince1970] * 1000];;
     
@@ -366,7 +366,7 @@ NSString *fileName = [NSString stringWithFormat:@"%ld_iOS.jpg", (long)[[NSDate d
 
 ### Post下载文件
 
-```
+```objective-c
 NSString *resumableDownloadPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"临时文件名"];
     
 @weakify(self);
