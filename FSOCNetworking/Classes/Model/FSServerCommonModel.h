@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) id datas;
 
++ (void)setFSMapingDict:(nullable NSDictionary *)dict;
+
++ (nullable NSDictionary *)FSMapingDict;
+
 @end
 
 NS_ASSUME_NONNULL_END

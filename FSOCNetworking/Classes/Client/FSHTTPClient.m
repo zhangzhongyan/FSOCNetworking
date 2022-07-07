@@ -98,17 +98,8 @@
                 
                 //键值映射
                 if (netServerCommonModelUtils) {
-                    
-                    NSString *statusKey = [netServerCommonModelUtils statusKeyForServerCommonModel];
-                    NSString *messageKey = [netServerCommonModelUtils messageKeyForServerCommonModel];
-                    NSString *datasKey = [netServerCommonModelUtils datasKeyForServerCommonModel];
-                    
-                    [FSServerCommonModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-                        return @{ @"status": statusKey,
-                                  @"message": messageKey,
-                                  @"datas": datasKey
-                        };
-                    }];
+                    NSDictionary *mapDict = [netServerCommonModelUtils mapingDictForServerCommonModel];
+                    [FSServerCommonModel setFSMapingDict:mapDict];
                 }
                 
                 FSServerCommonModel *commonModel = [FSServerCommonModel fs_objectWithKeyValues:jsonObject];

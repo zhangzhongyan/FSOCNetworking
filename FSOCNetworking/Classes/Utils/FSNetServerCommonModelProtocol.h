@@ -11,11 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FSNetServerCommonModelProtocol <NSObject>
 
-- (nullable NSString *)statusKeyForServerCommonModel;
-
-- (nullable NSString *)messageKeyForServerCommonModel;
-
-- (nullable NSString *)datasKeyForServerCommonModel;
+- (nullable NSDictionary *)mapingDictForServerCommonModel;
 
 @end
 

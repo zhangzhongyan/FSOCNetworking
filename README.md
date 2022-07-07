@@ -175,9 +175,7 @@ typedef NS_ENUM(NSUInteger, FSConnectErrorType) {
   - `requestCommonParamsWithUrl:` //公共参数
   
 * `<FSNetServerCommonModelProtocol>`响应模型协议
-  - `statusKeyForServerCommonModel:` //服务端status字段
-  - `messageKeyForServerCommonModel:`//服务端message字段
-  - `datasKeyForServerCommonModel:`//服务端datas字段
+  - `mapingDictForServerCommonModel:` //服务端status、message、datas字段
   
 * `<FSNetRequestHandlerProtocol>` 回调处理协议
   - 业务回调之前进行统一处理（比如动态网络配置、加密密钥交换）
