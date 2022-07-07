@@ -330,17 +330,41 @@ FSNetworkData：网络响应模型
 	@strongify(self);
 	[MBProgressHUD hidenLoadingInView:self.view];
 
-		if (data.isSuccess) {
-			//处理数据、刷新界面
-			[self.viewModel handleData:data.modelObject];
-			[self.tableView reaload];
-		} else {
-			[MBProgressHUD showToastMessage:data.errMsg];
-		}
+	if (data.isSuccess) {
+		//处理数据、刷新界面
+		[self.viewModel handleData:data.modelObject];
+		[self.tableView reaload];
+	} else {
+		[MBProgressHUD showToastMessage:data.errMsg];
+	}
 }];
 ```
 
 ### Post上传文件
+
+```
+NSData *imageData = [NSData data];
+NSString *fileName = [NSString stringWithFormat:@"%ld_iOS.jpg", (long)[[NSDate date] timeIntervalSince1970] * 1000];;
+    
+@weakify(self);
+[MBProgressHUD showLoadingInView:self.view];
+[[FSHTTPClient shared] postRequestWithUrl:@"api/file/upload" parameters:params entityClass:FSFileRespEntity.class constructingBodyBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+	[formData appendPartWithFileData:imageData name:@"files[0].file" fileName:fileName mimeType:@"image/jpeg"];
+} complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
+	@strongify(self);
+	[MBProgressHUD hidenLoadingInView:self.view];
+	if (data.isSuccess) {
+		//处理数据、刷新界面
+		[self.viewModel handleData:data.modelObject];
+		[self.tableView reaload];
+	} else {
+		[MBProgressHUD showToastMessage:data.errMsg];
+	}
+}];
+
+```
+
+### Post下载文件
 
 ```
 NSString *resumableDownloadPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"临时文件名"];
@@ -358,27 +382,6 @@ NSString *resumableDownloadPath = [NSTemporaryDirectory() stringByAppendingPathC
 		[MBProgressHUD showToastMessage:data.errMsg];
 	}
 }];
-
-```
-
-### Post下载文件
-
-```
-- (FSBaseRequest *)postDownloadFileWithURL:(NSString *)url
-                                parameters:(nullable NSDictionary *)parameters
-                     resumableDownloadPath:(nullable NSString *)resumableDownloadPath
-                             complateBlock:(nullable FSNetworkCompletedBlock)completedBlock
-{
-    FSBaseRequest *request = [[FSBaseRequest alloc] initWithURL:url method:FSYTKRequestMethodPOST params:parameters headersBlock:^NSDictionary * _Nonnull{
-        return [FSHTTPClient.shared.netParamUtils requestHeaderFields] ?: @{};
-    } timeout:15 requestSerializerBlock:^AFHTTPRequestSerializer * _Nonnull{
-        return [AFJSONRequestSerializer serializer];
-    } responseSerializerBlock:^AFHTTPResponseSerializer * _Nonnull{
-        return [AFHTTPResponseSerializer serializer];
-    } baseURL:[FSEnvironmentUtils baseAPIURL] resumableDownloadPath:resumableDownloadPath];
-    [self sendRequest:request entityClass:nil completionBlock:completedBlock];
-    return request;
-}
 ```
 
 
