@@ -23,6 +23,16 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9AACC5CE0433D0BC80FEC5B1 /* Pods_FSOCNetworking_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B0AE0667B38C9B257381E6 /* Pods_FSOCNetworking_Tests.framework */; };
+		E1A620A328770A8A0057645A /* FSHTTPClient+FSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A620A228770A8A0057645A /* FSHTTPClient+FSClient.m */; };
+		E1A620A828770D680057645A /* FSUserInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A620A728770D680057645A /* FSUserInfoEntity.m */; };
+		E1A620AB28770FDC0057645A /* FSFileRespEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A620AA28770FDC0057645A /* FSFileRespEntity.m */; };
+		E1C8A3AA2876D2B700F41867 /* FSNetworkingConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3A92876D2B700F41867 /* FSNetworkingConfigure.m */; };
+		E1C8A3B12876D4B600F41867 /* FSEnvironmentUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3B02876D4B600F41867 /* FSEnvironmentUtils.m */; };
+		E1C8A3B52876D4F900F41867 /* FSNetLogUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3B42876D4F900F41867 /* FSNetLogUtils.m */; };
+		E1C8A3B82876D51600F41867 /* FSNetParamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3B72876D51600F41867 /* FSNetParamUtils.m */; };
+		E1C8A3BB2876D52900F41867 /* FSNetServerCodeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3BA2876D52900F41867 /* FSNetServerCodeHandler.m */; };
+		E1C8A3BE2876D53C00F41867 /* FSNetRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3BD2876D53C00F41867 /* FSNetRequestHandler.m */; };
+		E1C8A3C12876D59100F41867 /* FSNetCommonModelUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C8A3C02876D59100F41867 /* FSNetCommonModelUtils.m */; };
 		EB80DB983874390D1970B3E5 /* Pods_FSOCNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296202FEEFA4C43EE1A781BD /* Pods_FSOCNetworking_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +76,28 @@
 		A7CEBFC8FB33354895978371 /* Pods-FSOCNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSOCNetworking_Example.debug.xcconfig"; path = "Target Support Files/Pods-FSOCNetworking_Example/Pods-FSOCNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B0AE0667B38C9B257381E6 /* Pods_FSOCNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSOCNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D82C8EB2A43DAA6C767EE2 /* FSOCNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FSOCNetworking.podspec; path = ../FSOCNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E1A6209E287704100057645A /* FSNotifyConstans.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNotifyConstans.h; sourceTree = "<group>"; };
+		E1A620A128770A8A0057645A /* FSHTTPClient+FSClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSHTTPClient+FSClient.h"; sourceTree = "<group>"; };
+		E1A620A228770A8A0057645A /* FSHTTPClient+FSClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSHTTPClient+FSClient.m"; sourceTree = "<group>"; };
+		E1A620A628770D680057645A /* FSUserInfoEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoEntity.h; sourceTree = "<group>"; };
+		E1A620A728770D680057645A /* FSUserInfoEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoEntity.m; sourceTree = "<group>"; };
+		E1A620A928770FDC0057645A /* FSFileRespEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFileRespEntity.h; sourceTree = "<group>"; };
+		E1A620AA28770FDC0057645A /* FSFileRespEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFileRespEntity.m; sourceTree = "<group>"; };
+		E1C8A3A82876D2B700F41867 /* FSNetworkingConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNetworkingConfigure.h; sourceTree = "<group>"; };
+		E1C8A3A92876D2B700F41867 /* FSNetworkingConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNetworkingConfigure.m; sourceTree = "<group>"; };
+		E1C8A3AC2876D39900F41867 /* FSURLMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSURLMacro.h; sourceTree = "<group>"; };
+		E1C8A3AF2876D4B600F41867 /* FSEnvironmentUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEnvironmentUtils.h; sourceTree = "<group>"; };
+		E1C8A3B02876D4B600F41867 /* FSEnvironmentUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEnvironmentUtils.m; sourceTree = "<group>"; };
+		E1C8A3B32876D4F900F41867 /* FSNetLogUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNetLogUtils.h; sourceTree = "<group>"; };
+		E1C8A3B42876D4F900F41867 /* FSNetLogUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNetLogUtils.m; sourceTree = "<group>"; };
+		E1C8A3B62876D51600F41867 /* FSNetParamUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNetParamUtils.h; sourceTree = "<group>"; };
+		E1C8A3B72876D51600F41867 /* FSNetParamUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNetParamUtils.m; sourceTree = "<group>"; };
+		E1C8A3B92876D52900F41867 /* FSNetServerCodeHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNetServerCodeHandler.h; sourceTree = "<group>"; };
+		E1C8A3BA2876D52900F41867 /* FSNetServerCodeHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNetServerCodeHandler.m; sourceTree = "<group>"; };
+		E1C8A3BC2876D53C00F41867 /* FSNetRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNetRequestHandler.h; sourceTree = "<group>"; };
+		E1C8A3BD2876D53C00F41867 /* FSNetRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNetRequestHandler.m; sourceTree = "<group>"; };
+		E1C8A3BF2876D59100F41867 /* FSNetCommonModelUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNetCommonModelUtils.h; sourceTree = "<group>"; };
+		E1C8A3C02876D59100F41867 /* FSNetCommonModelUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNetCommonModelUtils.m; sourceTree = "<group>"; };
 		F646582DD546CBC41171BA03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +164,8 @@
 		6003F593195388D20070C39A /* Example for FSOCNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				E1C8A3AD2876D44000F41867 /* General */,
+				E1C8A3A62876D28000F41867 /* Networking */,
 				6003F59C195388D20070C39A /* FSAppDelegate.h */,
 				6003F59D195388D20070C39A /* FSAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -194,6 +228,90 @@
 				9687B8019A1A01BF4C550D0D /* Pods-FSOCNetworking_Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E1A6209F28770A560057645A /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				E1A620A128770A8A0057645A /* FSHTTPClient+FSClient.h */,
+				E1A620A228770A8A0057645A /* FSHTTPClient+FSClient.m */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		E1A620A528770D340057645A /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				E1A620A628770D680057645A /* FSUserInfoEntity.h */,
+				E1A620A728770D680057645A /* FSUserInfoEntity.m */,
+				E1A620A928770FDC0057645A /* FSFileRespEntity.h */,
+				E1A620AA28770FDC0057645A /* FSFileRespEntity.m */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		E1C8A3A62876D28000F41867 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E1A620A528770D340057645A /* ResponseModel */,
+				E1A6209F28770A560057645A /* Client */,
+				E1C8A3AB2876D36200F41867 /* Constans */,
+				E1C8A3A72876D29600F41867 /* Configure */,
+				E1C8A3B22876D4D100F41867 /* Utils */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E1C8A3A72876D29600F41867 /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8A3A82876D2B700F41867 /* FSNetworkingConfigure.h */,
+				E1C8A3A92876D2B700F41867 /* FSNetworkingConfigure.m */,
+			);
+			path = Configure;
+			sourceTree = "<group>";
+		};
+		E1C8A3AB2876D36200F41867 /* Constans */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8A3AC2876D39900F41867 /* FSURLMacro.h */,
+				E1A6209E287704100057645A /* FSNotifyConstans.h */,
+			);
+			path = Constans;
+			sourceTree = "<group>";
+		};
+		E1C8A3AD2876D44000F41867 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8A3AE2876D45000F41867 /* Utils */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		E1C8A3AE2876D45000F41867 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8A3AF2876D4B600F41867 /* FSEnvironmentUtils.h */,
+				E1C8A3B02876D4B600F41867 /* FSEnvironmentUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E1C8A3B22876D4D100F41867 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8A3B32876D4F900F41867 /* FSNetLogUtils.h */,
+				E1C8A3B42876D4F900F41867 /* FSNetLogUtils.m */,
+				E1C8A3B62876D51600F41867 /* FSNetParamUtils.h */,
+				E1C8A3B72876D51600F41867 /* FSNetParamUtils.m */,
+				E1C8A3BF2876D59100F41867 /* FSNetCommonModelUtils.h */,
+				E1C8A3C02876D59100F41867 /* FSNetCommonModelUtils.m */,
+				E1C8A3B92876D52900F41867 /* FSNetServerCodeHandler.h */,
+				E1C8A3BA2876D52900F41867 /* FSNetServerCodeHandler.m */,
+				E1C8A3BC2876D53C00F41867 /* FSNetRequestHandler.h */,
+				E1C8A3BD2876D53C00F41867 /* FSNetRequestHandler.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,9 +488,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C8A3B82876D51600F41867 /* FSNetParamUtils.m in Sources */,
+				E1C8A3B12876D4B600F41867 /* FSEnvironmentUtils.m in Sources */,
 				6003F59E195388D20070C39A /* FSAppDelegate.m in Sources */,
+				E1C8A3BB2876D52900F41867 /* FSNetServerCodeHandler.m in Sources */,
+				E1A620AB28770FDC0057645A /* FSFileRespEntity.m in Sources */,
+				E1C8A3AA2876D2B700F41867 /* FSNetworkingConfigure.m in Sources */,
+				E1C8A3BE2876D53C00F41867 /* FSNetRequestHandler.m in Sources */,
+				E1A620A828770D680057645A /* FSUserInfoEntity.m in Sources */,
 				6003F5A7195388D20070C39A /* FSViewController.m in Sources */,
+				E1C8A3C12876D59100F41867 /* FSNetCommonModelUtils.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				E1C8A3B52876D4F900F41867 /* FSNetLogUtils.m in Sources */,
+				E1A620A328770A8A0057645A /* FSHTTPClient+FSClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

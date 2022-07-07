@@ -33,7 +33,7 @@ pod 'FSOCNetworking'
 {
 	"status":10000,
  	"message":"Success", 
- 	"data":id
+ 	"datas":id
 }
 ```
 - 文件上传/文件下载
@@ -80,14 +80,6 @@ FSServerCommonModel:服务端响应JSON数据模型
 - message：服务端
 - datas：服务端数据
 
-```
-@interface FSServerCommonModel : NSObject
-@property (nonatomic, assign) NSInteger status;
-@property (nonatomic, strong, nullable) NSString *message;
-@property (nonatomic, strong, nullable) id datas;
-@end
-```
-
 FSNetworkData：网络响应模型
 
 - 按照业务抽象出来的实体模型
@@ -95,70 +87,299 @@ FSNetworkData：网络响应模型
 - 兼容文件下载
 - 兼容数据类型
 
-```
-typedef NS_ENUM(NSUInteger, FSConnectErrorType) {
-    /** 未知 */
-    FSConnectErrorType_Unknow,
-    /** 本地错误 */
-    FSConnectErrorType_Local,
-    /** 服务器错误 */
-    FSConnectErrorType_Server_Error,
-    /** 超时 */
-    FSConnectErrorType_TimeOut,
-};
 
+## 配置网络
 
-/// 业务请求成功时，为YES, 否则NO
-@property (nonatomic, assign) BOOL isSuccess;
+#### 1、配置FSHTTPClient
 
-/// 网络返回的状态码,例:404
-@property (nonatomic, copy, nullable) NSString *errCode;
-
-/// 出错类型（FSConnectErrorType）
-@property (nonatomic, assign) FSConnectErrorType errorType;
-
-/// FSConnectErrorType_Local时，对应的错误信息
-@property (nonatomic, strong, nullable) NSError *localReqestError;
-
-/// 文件下载时，客户端配置的本地URL
-@property (nonatomic, strong, nullable) NSURL *fileURL;
-
-/// 服务端返回的状态码,例:1000
-@property (nonatomic, assign) NSInteger serverStatus;
-
-/// 服务端返回的errMsg、或者 客户端配置本地信息
-@property (nonatomic, copy, nullable) NSString *errMsg;
-
-/// entityClass对应的模型
-@property (nonatomic, strong, nullable) id modelObject;
-
-/// 服务端返回的datas字段数据
-@property (nonatomic, strong, nullable) id datasObject;
+**注意：按需选择实现**
 
 ```
+#import <FSOCNetworking/FSOCNetworking.h>
+#import <FSOCNetworking/FSYTKNetworkConfig.h>
+
++ (void)setupNetworkConfig {
+
+    FSYTKNetworkConfig.sharedConfig.securityPolicy = [FSNetworkingConfigure shareSecurityPolicy];
+
+    FSHTTPClient.shared.logUtils = [[FSNetLogUtils alloc] init];
+    FSHTTPClient.shared.netParamUtils = [[FSNetParamUtils alloc] init];
+    FSHTTPClient.shared.netServerCommonModelUtils = [[FSNetCommonModelUtils alloc] init];
+    FSHTTPClient.shared.netServerCodeHandler = [[FSNetServerCodeHandler alloc] init];
+    FSHTTPClient.shared.netRequestHandler = [[FSNetRequestHandler alloc] init];
+}
+```
+
+#### 2、实现协议FSNetLogProtocol
+
+```
+/** 打印开始Log */
++ (void)logStartRequest:(FSYTKBaseRequest *)request {
+    
+#ifdef DEBUG
+    
+    FSYTKRequestMethod method = [request requestMethod];
+    NSString *methodString = @"--";
+    if (method == FSYTKRequestMethodGET) {
+        methodString = @"GET";
+    }
+    else if (method == FSYTKRequestMethodPOST) {
+        methodString = @"POST";
+    }
+    else if (method == FSYTKRequestMethodHEAD) {
+        methodString = @"HEAD";
+    }
+    else if (method == FSYTKRequestMethodPUT) {
+        methodString = @"PUT";
+    }
+    else if (method == FSYTKRequestMethodDELETE) {
+        methodString = @"DELETE";
+    }
+    else if (method == FSYTKRequestMethodPATCH) {
+        methodString = @"PATCH";
+    }
+    
+    NSMutableString *logStr = [NSMutableString string];
+    [logStr appendFormat:@"\n\n--------------------------请求开始--------------------------\n"];
+    [logStr appendFormat:@"请求方式:%@\n", methodString];
+    [logStr appendFormat:@"请求地址:%@\n", request.requestUrl];
+    [logStr appendFormat:@"请求参数:\n%@\n", [request.requestArgument mj_JSONString] ? : @""];
+    [logStr appendFormat:@"------------------------------------------------------------\n\n. "];
+    
+    NSLog(@"%@", logStr);
+#endif
+    
+}
+
+/** 打印结束Log */
++ (void)logEndRequest:(FSYTKBaseRequest *)request {
+    
+#ifdef DEBUG
+    NSMutableString *logStr = [NSMutableString string];
+    [logStr appendFormat:@"\n\n===========================请求结束==========================\n"];
+    
+    NSURLRequest *URLRequest = request.originalRequest;
+    [logStr appendFormat:@"请求地址:%@\n", URLRequest.URL];
+    [logStr appendFormat:@"GET子串:%@\n", URLRequest.URL.query ? : @""];
+    [logStr appendFormat:@"网络状态码:%ld\n", (long)request.responseStatusCode];
+    [logStr appendFormat:@"errMsg:%@\n", request.error];
+    
+    [logStr appendFormat:@"返回responseJSON:\n%@\n", [request.responseJSONObject mj_JSONString]];
+    NSError *error = request.requestTask.error;
+    if (error) {
+        [logStr appendFormat:@"Error Domain:%@\n", error.domain];
+        [logStr appendFormat:@"Error Domain Code:%ld\n", (long)error.code];
+        [logStr appendFormat:@"Error Localized Description:%@\n", error.localizedDescription];
+        [logStr appendFormat:@"Error Localized Failure Reason:%@\n", error.localizedFailureReason];
+        [logStr appendFormat:@"Error Localized Recovery Suggestion:%@\n", error.localizedRecoverySuggestion];
+    }
+    [logStr appendFormat:@"=============================================================\n\n."];
+    
+    NSLog(@"%@", logStr);
+#endif
+    
+}
+```
+
+#### 3、实现协议FSNetParamProtocol
+
+```
+- (NSMutableDictionary *)requestHeaderFields {
+    NSMutableDictionary *headParamDic = [NSMutableDictionary dictionary];
+    //定制化请求头（eg:标识请求类型）
+    return headParamDic;
+}
+
+- (NSMutableDictionary *)requestCommonParamsWithUrl:(NSString *)url {
+    NSMutableDictionary *commonParams = [NSMutableDictionary dictionary];
+    //语言
+    [commonParams safeSetObject:@"cn" forKey:@"language"];
+    //appType
+    [commonParams safeSetObject:@(1) forKey:@"appType"];
+    //版本号
+    [commonParams safeSetObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"appVersion"];
+    //BundleId
+    [commonParams safeSetObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appBundleId"];
+    // 用户ID
+    [commonParams safeSetObject:@(1) forKey:@"userId"];
+    // 随机数
+    int random = arc4random() % 100 ;
+    [commonParams safeSetObject:@(random) forKey:@"nonce"];
+    // 时间戳
+    NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970] * 1000];
+    [commonParams safeSetObject:timestamp forKey:@"timestamp"];
+    //设备类型
+    [commonParams safeSetObject:@(1) forKey:@"deviceType"];
+    // 签名
+    [commonParams safeSetObject:@"gn;eabgebg;b" forKey:@"signature"];
+    return commonParams;
+}
+```
+
+#### 4、实现协议FSNetServerCommonModelProtocol
+
+**注意**：键值对映射，主要用于JSON—>FSServerCommonModel模型，根据服务端返回进行映射
+
+```
+/// 例如返回数据为{"status":10000,"message":"Success", "data":id}
+- (nullable NSDictionary *)mapingDictForServerCommonModel
+{
+    return @{@"status": @"status",
+             @"message": @"message",
+             @"datas": @"data" 
+    };
+}
+```
+#### 5、实现协议FSNetServerCodeHandlerProtocol
+
+**注意**：如果serverErrorMessageWithCode返回nil，则业务成功
 
 
+```
+- (NSString *)localNetworkTimeOutMessage
+{
+    return @"网络超时\n请稍后重试";
+}
 
+- (NSString *)localNetworkErrorMessage
+{
+    return @"网络异常\n请更换网络或稍后重试";
+}
+
+- (nullable NSString *)serverErrorMessageWithCode:(NSInteger)serverCode
+{
+    if (serverCode == 10000) {
+        return nil;
+    } else {
+        if (serverCode == 10001) {
+            return @"Token失效";
+        }
+        else if (serverCode == 10003) {
+            return @"服务器维护中";
+        }
+        else {
+            return @"服务器异常，请稍后重试";
+        }
+    }
+}
+
+- (void)handleNetworkData:(FSNetworkData *)networkData
+{
+    // Token失效
+    if (networkData.serverStatus == 10001) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            /// 进行统一界面交互
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyTokenInvalid object:nil];
+        });
+    }
+    
+    // 本地网络错误
+    if (networkData.localReqestError) {
+        //网络不安全
+        if (networkData.localReqestError.code == NSURLErrorServerCertificateUntrusted ||
+            networkData.localReqestError.code == NSURLErrorUserCancelledAuthentication) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                /// 进行统一界面交互、防止抓包
+            });
+        }
+    }
+}
+
+```
+
+#### 6、实现协议FSNetRequestHandlerProtocol
+
+```
+- (void)handleReqest:(FSBaseRequest *)request entityClass:(nullable Class)entityClass completionBlock:(nullable void (^)(FSNetworkData * _Nonnull, __kindof FSBaseRequest * _Nonnull))completionBlock
+{
+    if (request.networkData.serverStatus == 10005 ||
+             request.networkData.serverStatus == 10006 ||
+             request.networkData.serverStatus == 10007) {
+        //重新生成密钥，进行密钥交换
+    }
+    else if (request.networkData.serverStatus) {
+        if (completionBlock) {
+            completionBlock(request.networkData, request);
+        }
+    }
+    else {
+        
+        // 密匙交换第一步成功、但是第二步失败
+        if (0) {
+        }
+        else {
+            if (completionBlock) {
+                completionBlock(request.networkData, request);
+            }
+        }
+    }
+}
+```
 
 ## 使用例子
 
+
+
 ### Post请求
+聚焦业务URL、参数、数据模型
 
-### 文件上传请求
+```
+@weakify(self);
+[MBProgressHUD showLoadingInView:self.view];
+[[FSHTTPClient shared] postRequestWithUrl:@"api/userInfo" parameters:params entityClass:FSUserInfoEntity.class complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
+	@strongify(self);
+	[MBProgressHUD hidenLoadingInView:self.view];
 
-### 文件下载请求
+		if (data.isSuccess) {
+			//处理数据、刷新界面
+			[self.viewModel handleData:data.modelObject];
+			[self.tableView reaload];
+		} else {
+			[MBProgressHUD showToastMessage:data.errMsg];
+		}
+}];
+```
 
- 
-### 插件化请求
+### Post上传文件
 
-##### 请求头
-##### 公共参数
+```
+NSString *resumableDownloadPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"临时文件名"];
+    
+@weakify(self);
+[MBProgressHUD showLoadingInView:self.view];
+[[FSHTTPClient shared] postDownloadFileWithURL:@"api/file/down" parameters:params resumableDownloadPath:resumableDownloadPath complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
+	@strongify(self);
+	[MBProgressHUD hidenLoadingInView:self.view];
+	if (data.isSuccess) {
+		//处理数据、刷新界面
+		[self.viewModel handleData:data.modelObject];
+		[self.tableView reaload];
+	} else {
+		[MBProgressHUD showToastMessage:data.errMsg];
+	}
+}];
 
-### 处理请求
+```
 
+### Post下载文件
 
-
-
+```
+- (FSBaseRequest *)postDownloadFileWithURL:(NSString *)url
+                                parameters:(nullable NSDictionary *)parameters
+                     resumableDownloadPath:(nullable NSString *)resumableDownloadPath
+                             complateBlock:(nullable FSNetworkCompletedBlock)completedBlock
+{
+    FSBaseRequest *request = [[FSBaseRequest alloc] initWithURL:url method:FSYTKRequestMethodPOST params:parameters headersBlock:^NSDictionary * _Nonnull{
+        return [FSHTTPClient.shared.netParamUtils requestHeaderFields] ?: @{};
+    } timeout:15 requestSerializerBlock:^AFHTTPRequestSerializer * _Nonnull{
+        return [AFJSONRequestSerializer serializer];
+    } responseSerializerBlock:^AFHTTPResponseSerializer * _Nonnull{
+        return [AFHTTPResponseSerializer serializer];
+    } baseURL:[FSEnvironmentUtils baseAPIURL] resumableDownloadPath:resumableDownloadPath];
+    [self sendRequest:request entityClass:nil completionBlock:completedBlock];
+    return request;
+}
+```
 
 
 ## 结构

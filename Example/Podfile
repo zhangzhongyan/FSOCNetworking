@@ -4,6 +4,7 @@ platform :ios, '10.0'
 
 target 'FSOCNetworking_Example' do
   pod 'FSOCNetworking', :path => '../'
+  pod 'FSOCUtils/SafeUtils'
 
   target 'FSOCNetworking_Tests' do
     inherit! :search_paths
