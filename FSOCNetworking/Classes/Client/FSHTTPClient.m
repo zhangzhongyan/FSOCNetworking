@@ -45,20 +45,20 @@
         // 一共有四种状态
         switch (status) {
             case AFNetworkReachabilityStatusNotReachable:
-                self.reachabilityStatus = EVNetworkReachabilityStatusNotReachable;
+                self.reachabilityStatus = FSNetworkReachabilityStatusNotReachable;
                 NSLog(@"AFNetworkReachability Not Reachable");
                 break;
             case AFNetworkReachabilityStatusReachableViaWWAN:
                 NSLog(@"AFNetworkReachability Reachable via WWAN");
-                self.reachabilityStatus = EVNetworkReachabilityStatusWWAN;
+                self.reachabilityStatus = FSNetworkReachabilityStatusWWAN;
                 break;
             case AFNetworkReachabilityStatusReachableViaWiFi:
-                self.reachabilityStatus = EVNetworkReachabilityStatusWiFi;
+                self.reachabilityStatus = FSNetworkReachabilityStatusWiFi;
                 NSLog(@"AFNetworkReachability Reachable via WiFi");
                 break;
             case AFNetworkReachabilityStatusUnknown:
             default:
-                self.reachabilityStatus = EVNetworkReachabilityStatusUnknown;
+                self.reachabilityStatus = FSNetworkReachabilityStatusUnknown;
                 NSLog(@"AFNetworkReachability Unknown");
                 break;
         }

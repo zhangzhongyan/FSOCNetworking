@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 请求头
 @property (nonatomic, copy, nullable) NSDictionary * (^fs_requestHeadersBlock) (void);
 
-/// 请求时间
+/// 请求超时时间
 @property (nonatomic, assign) NSTimeInterval fs_timeoutInterval;
 
 /// 请求数据形式
@@ -45,7 +45,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 //@property (nonatomic, copy, nullable) void *fs_requestCompleteFilter;
 
-/// 指定构造函数
+
+/// 便捷构造方法
+/// @param url 请求URL
+/// @param method 请求方法
+/// @param params 请求参数
+/// @param headersBlock 请求头
+/// @param timeout 请求超时时间
+/// @param requestSerializerBlock 请求数据形式
+/// @param responseSerializerBlock 响应数据形式
+/// @param baseURL 基础URL
+/// @param resumableDownloadPath 下载文件地址
 - (instancetype)initWithURL:(NSString *)url
                      method:(FSYTKRequestMethod)method
                      params:(nullable id)params

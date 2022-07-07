@@ -200,14 +200,14 @@
 		110884A57BAE3D504DEEEE0C24554F21 /* FSNetServerCodeHandlerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSNetServerCodeHandlerProtocol.h; path = FSOCNetworking/Classes/Utils/FSNetServerCodeHandlerProtocol.h; sourceTree = "<group>"; };
 		110EBFF7789CE48CDF24E29FE4EAAFA9 /* Pods-FSOCNetworking_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FSOCNetworking_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		18B53F108EF27B8488D6F52E385654AA /* Pods-FSOCNetworking_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FSOCNetworking_Tests-dummy.m"; sourceTree = "<group>"; };
-		1A5BCA0179B86A08F6CCD2D6541E7797 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1A5BCA0179B86A08F6CCD2D6541E7797 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		217A186AC510FAD100D3EFEA7AA97D5C /* FSYTKBatchRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSYTKBatchRequest.m; path = FSOCNetworking/Classes/YTKNetwork/FSYTKBatchRequest.m; sourceTree = "<group>"; };
 		22C2ED1474E56C029F60984A5DCC4AB0 /* FSYTKNetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSYTKNetwork.h; path = FSOCNetworking/Classes/YTKNetwork/FSYTKNetwork.h; sourceTree = "<group>"; };
 		230921884180B6CF4BE1F2C4E7B63B5A /* FSNetParamProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSNetParamProtocol.h; path = FSOCNetworking/Classes/Utils/FSNetParamProtocol.h; sourceTree = "<group>"; };
 		23DB66FF36968F31D0AEE271697567EB /* FSOCNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FSOCNetworking-dummy.m"; sourceTree = "<group>"; };
 		268ADE82DCA512D45164ACA998EB0DD6 /* FSNetworkData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSNetworkData.h; path = FSOCNetworking/Classes/Model/FSNetworkData.h; sourceTree = "<group>"; };
 		2715E15C7083EDEA60223AB2ABA84E39 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		2B276B0A79173A1D6E83C9B4FB9A4A57 /* MJExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B276B0A79173A1D6E83C9B4FB9A4A57 /* MJExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MJExtension.framework; path = MJExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2C88C18DCC51E220CC50A9381777F7 /* FSYTKNetworkAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSYTKNetworkAgent.h; path = FSOCNetworking/Classes/YTKNetwork/FSYTKNetworkAgent.h; sourceTree = "<group>"; };
 		2D057E80B93620DEEFFFE17230205CD1 /* FSBaseRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSBaseRequest.m; path = FSOCNetworking/Classes/Request/FSBaseRequest.m; sourceTree = "<group>"; };
 		2D5A39D0D830DF665787004844CB111C /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
@@ -217,10 +217,10 @@
 		33DCDC864792E64604EA6F27B4FC509E /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
 		3700670577A8879ECBE9C9D8D922DBCF /* FSOCNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSOCNetworking-umbrella.h"; sourceTree = "<group>"; };
 		389AF0AC63C3575445B546BCA3C241FA /* FSYTKChainRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSYTKChainRequest.m; path = FSOCNetworking/Classes/YTKNetwork/FSYTKChainRequest.m; sourceTree = "<group>"; };
-		39EC85EDDDA337D7C3A148FDB7937B51 /* Pods_FSOCNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSOCNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AD35C674B037EEED4C0E07508D2806D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		39EC85EDDDA337D7C3A148FDB7937B51 /* Pods_FSOCNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FSOCNetworking_Tests.framework; path = "Pods-FSOCNetworking_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AD35C674B037EEED4C0E07508D2806D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		3B27E4B6041E6B372CBB2925C57CE4C7 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
-		3D36586CE72CEB274E13BEA67FB2AB2A /* FSOCNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSOCNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D36586CE72CEB274E13BEA67FB2AB2A /* FSOCNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSOCNetworking.framework; path = FSOCNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7E29EC2CC0278340FFCFDDDD791031 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
 		3F9DB84F14CA4DD1530B8995C33D13B9 /* WKWebView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "WKWebView+AFNetworking.h"; path = "UIKit+AFNetworking/WKWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		40457EA725DE02587B62FE737BA3750B /* FSYTKNetworkPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSYTKNetworkPrivate.h; path = FSOCNetworking/Classes/YTKNetwork/FSYTKNetworkPrivate.h; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 		5DD07191DA166A66DF51FA5058795DC1 /* FSBaseRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSBaseRequest.h; path = FSOCNetworking/Classes/Request/FSBaseRequest.h; sourceTree = "<group>"; };
 		5EC08D888E741CFBBB0C290AEE75A765 /* FSNetLogProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSNetLogProtocol.h; path = FSOCNetworking/Classes/Utils/FSNetLogProtocol.h; sourceTree = "<group>"; };
 		5FD59262AB5F1F43A870FD79EC4EDBB4 /* MJFoundation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJFoundation.m; path = MJExtension/MJFoundation.m; sourceTree = "<group>"; };
-		6440E09BE4308B4361F2E4B01650FA0E /* FSOCNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = FSOCNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6440E09BE4308B4361F2E4B01650FA0E /* FSOCNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = FSOCNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		656C3EF7B979CFF867E0B5B053046357 /* FSYTKRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSYTKRequest.h; path = FSOCNetworking/Classes/YTKNetwork/FSYTKRequest.h; sourceTree = "<group>"; };
 		65C9FD33F084CFD4AE1856ACB4439C20 /* FSOCNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSOCNetworking.h; path = FSOCNetworking/FSOCNetworking.h; sourceTree = "<group>"; };
 		66DC4D68B8CA7C778DC3FA9AE063F712 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		6E6401B82CFAADC464BC72DF4A9F2422 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJKeyValue.h"; path = "MJExtension/NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
 		6F0EE7C90DB0C6DDEADE570439E65A6D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6F5A0923AEF2B62330999A1CCEE08798 /* MJExtensionConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJExtensionConst.h; path = MJExtension/MJExtensionConst.h; sourceTree = "<group>"; };
-		6F8193E62FD455D38566C14B145900E9 /* FSOCUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSOCUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F8193E62FD455D38566C14B145900E9 /* FSOCUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSOCUtils.framework; path = FSOCUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		714610EE8A6532FC5AB3AA3885355465 /* NSObject+FSMJKeyValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+FSMJKeyValue.m"; path = "FSOCUtils/Classes/JSONUtils/NSObject+FSMJKeyValue.m"; sourceTree = "<group>"; };
 		7309A98278E2F8A002DC741694DE3E61 /* NSString+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MJExtension.h"; path = "MJExtension/NSString+MJExtension.h"; sourceTree = "<group>"; };
 		753F50925922265FF4E62842F9F87DB0 /* NSString+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+MJExtension.m"; path = "MJExtension/NSString+MJExtension.m"; sourceTree = "<group>"; };
@@ -275,11 +275,11 @@
 		95DD484D55CFDC5C23CBA845D4B09EAA /* MJExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJExtension-prefix.pch"; sourceTree = "<group>"; };
 		972550F885ED9E3CA2E0626240F908D6 /* MJPropertyType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJPropertyType.h; path = MJExtension/MJPropertyType.h; sourceTree = "<group>"; };
 		9C0212A325F2BC4859D5DF9F4B9C448C /* AFNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AFNetworking-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E7F38B19D49E4FFA38D9C212A1D23EA /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		9F0B24B7973DBAFA0E464218169B934F /* FSYTKRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSYTKRequest.m; path = FSOCNetworking/Classes/YTKNetwork/FSYTKRequest.m; sourceTree = "<group>"; };
 		A2A14C4A32B7379B7D94664A3D5D93AF /* Pods-FSOCNetworking_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FSOCNetworking_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFNetworking.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C42F090D37ADA893881927994419B7 /* FSServerCommonModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSServerCommonModel.m; path = FSOCNetworking/Classes/Model/FSServerCommonModel.m; sourceTree = "<group>"; };
 		A6D95A188004F134BBE694E622A9C8EC /* Pods-FSOCNetworking_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FSOCNetworking_Example-Info.plist"; sourceTree = "<group>"; };
 		A72ECB5E6F97A0503212AB8765012485 /* NSObject+FSMJKeyValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FSMJKeyValue.h"; path = "FSOCUtils/Classes/JSONUtils/NSObject+FSMJKeyValue.h"; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 		AA1E207455F9DFADB3B948DF73440153 /* FSYTKBaseRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSYTKBaseRequest.h; path = FSOCNetworking/Classes/YTKNetwork/FSYTKBaseRequest.h; sourceTree = "<group>"; };
 		AB0BED5C71819CF7FC17C0844E90DC1F /* Pods-FSOCNetworking_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FSOCNetworking_Example-umbrella.h"; sourceTree = "<group>"; };
 		AD19051B04EB4FBCBA04FC45081E9496 /* AFNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.debug.xcconfig; sourceTree = "<group>"; };
-		AE2E0BF00DEA3D2B2178959EFD49FD08 /* Pods_FSOCNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSOCNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2E0BF00DEA3D2B2178959EFD49FD08 /* Pods_FSOCNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FSOCNetworking_Example.framework; path = "Pods-FSOCNetworking_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE86884A65E31AB5EE20D903885DA489 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		B0C84F2D2C84D01A0AA94E0B12222AD7 /* Pods-FSOCNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FSOCNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B101839D44C98B4D30039048B5E12A16 /* FSSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSSecurityPolicy.m; path = FSOCNetworking/Classes/Security/FSSecurityPolicy.m; sourceTree = "<group>"; };
@@ -441,6 +441,7 @@
 				AC1E54C9F320E0A204C6037AAE7F66B0 /* JSONUtils */,
 				B7C5C634C9A129B5DD583A24090EA68D /* Support Files */,
 			);
+			name = FSOCUtils;
 			path = FSOCUtils;
 			sourceTree = "<group>";
 		};
@@ -667,6 +668,7 @@
 				FD15051650EB531B9A922D0668F1D4A9 /* Support Files */,
 				F39757ADE792A5C328B0CF6F0E532160 /* UIKit */,
 			);
+			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -745,6 +747,7 @@
 				753F50925922265FF4E62842F9F87DB0 /* NSString+MJExtension.m */,
 				D1E5805C5407F7365676830364AFB774 /* Support Files */,
 			);
+			name = MJExtension;
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
@@ -1445,12 +1448,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1667,7 +1671,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

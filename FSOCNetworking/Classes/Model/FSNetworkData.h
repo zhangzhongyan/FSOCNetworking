@@ -23,34 +23,31 @@ typedef NS_ENUM(NSUInteger, FSConnectErrorType) {
 
 @interface FSNetworkData : NSObject
 
-/** 服务器返回10000 YES, 否则NO */
+/// 业务请求成功时，为YES, 否则NO
 @property (nonatomic, assign) BOOL isSuccess;
 
-/** 网络返回的状态码,例:404 */
+/// 网络返回的状态码,例:404
 @property (nonatomic, copy, nullable) NSString *errCode;
 
-/** FSConnectErrorType */
+/// 出错类型（FSConnectErrorType）
 @property (nonatomic, assign) FSConnectErrorType errorType;
 
-/// FSConnectErrorType_Local时，对应的错误
+/// FSConnectErrorType_Local时，对应的错误信息
 @property (nonatomic, strong, nullable) NSError *localReqestError;
 
-/** 下载对应本地的URL */
+/// 文件下载时，客户端配置的本地URL
 @property (nonatomic, strong, nullable) NSURL *fileURL;
 
-/** 服务端返回的状态码,例:00000 */
+/// 服务端返回的状态码,例:1000
 @property (nonatomic, assign) NSInteger serverStatus;
 
-/** 服务端返回的errMsg */
+/// 服务端返回的errMsg、或者 客户端配置本地信息
 @property (nonatomic, copy, nullable) NSString *errMsg;
 
-/** modelClass对应的Object */
+/// entityClass对应的模型
 @property (nonatomic, strong, nullable) id modelObject;
 
-/**
- datas对应的数组-字典-字符串
- 兼容目前处理字典的场景，重构完成删除该字段
- */
+/// 服务端返回的datas字段数据
 @property (nonatomic, strong, nullable) id datasObject;
 
 @end

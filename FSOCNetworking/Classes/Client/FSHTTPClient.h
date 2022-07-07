@@ -16,15 +16,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, EVNetworkReachabilityStatus) {
+typedef NS_ENUM(NSInteger, FSNetworkReachabilityStatus) {
     /** 未知 */
-    EVNetworkReachabilityStatusUnknown = 0,
+    FSNetworkReachabilityStatusUnknown = 0,
     /** 无网络 */
-    EVNetworkReachabilityStatusNotReachable = 1,
+    FSNetworkReachabilityStatusNotReachable = 1,
     /** 蜂窝网络 */
-    EVNetworkReachabilityStatusWWAN = 2,
+    FSNetworkReachabilityStatusWWAN = 2,
     /** WiFi */
-    EVNetworkReachabilityStatusWiFi = 3,
+    FSNetworkReachabilityStatusWiFi = 3,
 };
 
 // 请求完成回调block
@@ -33,7 +33,7 @@ typedef void(^FSNetworkCompletedBlock)(FSNetworkData *data,__kindof FSBaseReques
 @interface FSHTTPClient : NSObject
 
 /// 网络状态
-@property (nonatomic, assign) EVNetworkReachabilityStatus reachabilityStatus;
+@property (nonatomic, assign) FSNetworkReachabilityStatus reachabilityStatus;
 
 /// 网络打印工具
 @property (nonatomic, strong, nullable) id<FSNetLogProtocol> logUtils;
