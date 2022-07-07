@@ -74,6 +74,20 @@ FSBaseRequest：网络请求胖模型
 
 ### 响应模型
 
+FSServerCommonModel:服务端响应JSON数据模型
+
+- status：服务端状态码
+- message：服务端
+- datas：服务端数据
+
+```
+@interface FSServerCommonModel : NSObject
+@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, strong, nullable) NSString *message;
+@property (nonatomic, strong, nullable) id datas;
+@end
+```
+
 FSNetworkData：网络响应模型
 
 - 按照业务抽象出来的实体模型
@@ -128,13 +142,19 @@ typedef NS_ENUM(NSUInteger, FSConnectErrorType) {
 
 ## 使用例子
 
-### 简单Post请求
- 
-### 定制化请求参数
-#### 请求头
-#### 公共参数
+### Post请求
 
-### 非对称通讯
+### 文件上传请求
+
+### 文件下载请求
+
+ 
+### 插件化请求
+
+##### 请求头
+##### 公共参数
+
+### 处理请求
 
 
 
@@ -149,17 +169,58 @@ typedef NS_ENUM(NSUInteger, FSConnectErrorType) {
 * `<FSNetLogProtocol>`打印协议
   - `logStartRequest:` //请求开始
   - `logEndRequest:`//请求结束
+  
 * `<FSNetParamProtocol>`参数协议
   - `requestHeaderFields`//请求头 
   - `requestCommonParamsWithUrl:` //公共参数
-* `<FSNetRequestHandlerProtocol>` 请求回调处理协议
+  
+* `<FSNetServerCommonModelProtocol>`响应模型协议
+  - `statusKeyForServerCommonModel:` //服务端status字段
+  - `messageKeyForServerCommonModel:`//服务端message字段
+  - `datasKeyForServerCommonModel:`//服务端datas字段
+  
+* `<FSNetRequestHandlerProtocol>` 回调处理协议
   - 业务回调之前进行统一处理（比如动态网络配置、加密密钥交换）
   - `- (void)handleReqest:(FSBaseRequest *)request entityClass:(nullable Class)entityClass completionBlock:(nullable void(^)(FSNetworkData *data,__kindof FSBaseRequest *request))completionBlock;`
-* `<FSNetServerCodeHandlerProtocol>` 服务端状态码处理协议
-  - `- (NSString *)localNetworkTimeOutMessage` //
-  - `- (NSString *)localNetworkErrorMessage:`
-  - `- (nullable NSString *)serverErrorMessageWithCode:(NSInteger)serverCode;`
-  - `- (void)handleNetworkData:(FSNetworkData *)networkData`
+  
+* `<FSNetServerCodeHandlerProtocol>` 状态码处理协议
+  - `- (NSString *)localNetworkTimeOutMessage` //网路超时信息
+  - `- (NSString *)localNetworkErrorMessage:` //本地网络出错信息
+  - `- (nullable NSString *)serverErrorMessageWithCode:(NSInteger)serverCode;` //服务端业务出错信息
+  - `- (void)handleNetworkData:(FSNetworkData *)networkData` //统一处理业务码（eg：token失效）
+
+
+### YTKNetwork包装库
+
+- 由于项目使用YTKNetwork，它的具体使用可以参考[YTKNetwork](https://github.com/yuantiku/YTKNetwork) 
+
+### Request包装库
+
+* `FSBaseRequest`
+	- 继承YTKRequest
+	- headersBlock //动态获取请求头
+	- requestSerializerBlock //动态系列化请求体
+	- responseSerializerBlock //动态解析响应体
+	
+### Security库
+
+* `FSSecurityPolicy`
+	- 继承AFSecurityPolicy
+	- 重写方法evaluateServerTrust:forDomain:（不需要本地包含证书验证）
+	- 使用场景（证书容易过期，频繁更换）
+
+### Model模型库
+
+* `FSNetworkData`说明部分包含了
+* `FSServerCommonModel` 说明部分包含了
+
+### Client模型库
+	
+* `FSHTTPClient`
+	- 网络请求客户端
+	- 通过<协议>方式拓展功能性插件
+	- 发送FSBaseRequest请求，携带解析模型，进行业务回调处理
+
 
 
 

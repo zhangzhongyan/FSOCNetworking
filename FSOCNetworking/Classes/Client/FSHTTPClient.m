@@ -73,7 +73,8 @@
 + (FSNetworkData *)networkDataWithRequest:(FSYTKBaseRequest *)request
                                   succeed:(BOOL)succeed
                              requestError:(nullable NSError *)requestError
-                        serverCodeHandler:(id<FSNetServerCodeHandlerProtocol>)serverCodeHandler
+                netServerCommonModelUtils:(nullable id<FSNetServerCommonModelProtocol>)netServerCommonModelUtils
+                        serverCodeHandler:(nullable id<FSNetServerCodeHandlerProtocol>)serverCodeHandler
                               entityClass:(nullable Class)entityClass {
     if (succeed) {
         
@@ -93,7 +94,24 @@
         if ([request.responseData isKindOfClass:[NSData class]]) {
             if ([request.responseSerializer isKindOfClass:AFJSONResponseSerializer.class]) {
                 
-                FSServerCommonModel *commonModel = [FSServerCommonModel fs_objectWithKeyValues:request.responseJSONObject];
+                id jsonObject = request.responseJSONObject;
+                
+                //键值映射
+                if (netServerCommonModelUtils) {
+                    
+                    NSString *statusKey = [netServerCommonModelUtils statusKeyForServerCommonModel];
+                    NSString *messageKey = [netServerCommonModelUtils messageKeyForServerCommonModel];
+                    NSString *datasKey = [netServerCommonModelUtils datasKeyForServerCommonModel];
+                    
+                    [FSServerCommonModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+                        return @{ @"status": statusKey,
+                                  @"message": messageKey,
+                                  @"datas": datasKey
+                        };
+                    }];
+                }
+                
+                FSServerCommonModel *commonModel = [FSServerCommonModel fs_objectWithKeyValues:jsonObject];
                 data.serverStatus = commonModel.status;
                 data.errMsg = commonModel.message;
                 id datas = commonModel.datas;
@@ -186,7 +204,7 @@
             [self.logUtils.class performSelector:@selector(logEndRequest:) withObject:request];
         }
         
-        request.networkData = [FSHTTPClient networkDataWithRequest:request succeed:YES requestError:nil serverCodeHandler:self.netServerCodeHandler entityClass:entityClass];
+        request.networkData = [FSHTTPClient networkDataWithRequest:request succeed:YES requestError:nil netServerCommonModelUtils:self.netServerCommonModelUtils serverCodeHandler:self.netServerCodeHandler entityClass:entityClass];
         
         if (self.netRequestHandler && [self.netRequestHandler respondsToSelector:@selector(handleReqest:entityClass:completionBlock:)]) {
             [self.netRequestHandler handleReqest:request entityClass:entityClass completionBlock:completionBlock];
@@ -204,8 +222,8 @@
             [self.logUtils.class performSelector:@selector(logEndRequest:) withObject:request];
         }
         
-        request.networkData = [FSHTTPClient networkDataWithRequest:request succeed:NO requestError:request.error serverCodeHandler:self.netServerCodeHandler entityClass:entityClass];
-        
+        request.networkData = [FSHTTPClient networkDataWithRequest:request succeed:NO requestError:request.error netServerCommonModelUtils:self.netServerCommonModelUtils  serverCodeHandler:self.netServerCodeHandler entityClass:entityClass];
+
         if (self.netRequestHandler && [self.netRequestHandler respondsToSelector:@selector(handleReqest:entityClass:completionBlock:)]) {
             [self.netRequestHandler handleReqest:request entityClass:entityClass completionBlock:completionBlock];
         } else {

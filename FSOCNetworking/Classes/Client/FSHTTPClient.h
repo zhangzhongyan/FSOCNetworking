@@ -13,6 +13,7 @@
 #import "FSNetParamProtocol.h"
 #import "FSNetServerCodeHandlerProtocol.h"
 #import "FSNetRequestHandlerProtocol.h"
+#import "FSNetServerCommonModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,6 +41,9 @@ typedef void(^FSNetworkCompletedBlock)(FSNetworkData *data,__kindof FSBaseReques
 
 /// 网络参数工具
 @property (nonatomic, strong, nullable) id<FSNetParamProtocol> netParamUtils;
+
+/// 网络公共模型工具
+@property (nonatomic, strong, nullable) id<FSNetServerCommonModelProtocol> netServerCommonModelUtils;
 
 /// 网络响应码处理器
 @property (nonatomic, strong, nullable) id<FSNetServerCodeHandlerProtocol> netServerCodeHandler;

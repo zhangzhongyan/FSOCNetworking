@@ -20,6 +20,7 @@
 #import "FSNetParamProtocol.h"
 #import "FSNetRequestHandlerProtocol.h"
 #import "FSNetServerCodeHandlerProtocol.h"
+#import "FSNetServerCommonModelProtocol.h"
 #import "FSYTKBaseRequest.h"
 #import "FSYTKBatchRequest.h"
 #import "FSYTKBatchRequestAgent.h"
