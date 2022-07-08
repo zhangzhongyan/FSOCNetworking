@@ -24,6 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
                 constructingBodyBlock:(nullable AFConstructingBlock)constructingBodyBlock
                         complateBlock:(nullable FSNetworkCompletedBlock)completedBlock;
 
+/// Post上传文件
+- (FSBaseRequest *)postRequestWithUrl:(NSString *)url
+                           parameters:(nullable NSDictionary *)parameters
+                          entityClass:(nullable Class)entityClass
+                constructingBodyBlock:(nullable AFConstructingBlock)constructingBodyBlock
+                  uploadProgressBlock:(nullable AFURLSessionTaskProgressBlock)uploadProgressBlock
+                        complateBlock:(nullable FSNetworkCompletedBlock)completedBlock;
+
 /// Post下载文件
 - (FSBaseRequest *)postDownloadFileWithURL:(NSString *)url
                                 parameters:(nullable NSDictionary *)parameters

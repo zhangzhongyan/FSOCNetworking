@@ -41,6 +41,30 @@
     return request;
 }
 
+- (FSBaseRequest *)postRequestWithUrl:(NSString *)url
+                           parameters:(nullable NSDictionary *)parameters
+                          entityClass:(nullable Class)entityClass
+                constructingBodyBlock:(nullable AFConstructingBlock)constructingBodyBlock
+                  uploadProgressBlock:(nullable AFURLSessionTaskProgressBlock)uploadProgressBlock
+                        complateBlock:(nullable FSNetworkCompletedBlock)completedBlock
+{
+    FSBaseRequest *request = [[FSBaseRequest alloc] initWithURL:url method:FSYTKRequestMethodPOST params:parameters headersBlock:^NSDictionary * _Nonnull{
+        return @{};
+    } timeout:15 requestSerializerBlock:^AFHTTPRequestSerializer * _Nonnull{
+        return [AFJSONRequestSerializer serializer];
+    } responseSerializerBlock:^AFHTTPResponseSerializer * _Nonnull{
+        return [AFJSONResponseSerializer serializer];
+    } baseURL:[FSEnvironmentUtils baseAPIURL] resumableDownloadPath:nil];
+    
+    //POST媒体流（文件）
+    request.constructingBodyBlock = constructingBodyBlock;
+    
+    request.uploadProgressBlock = uploadProgressBlock;
+    
+    [self sendRequest:request entityClass:entityClass completionBlock:completedBlock];
+    return request;
+}
+
 - (FSBaseRequest *)postDownloadFileWithURL:(NSString *)url
                                 parameters:(nullable NSDictionary *)parameters
                      resumableDownloadPath:(nullable NSString *)resumableDownloadPath

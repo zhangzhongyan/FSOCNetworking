@@ -181,7 +181,7 @@
             if (request.resumableDownloadPath) {
                 return [self downloadTaskWithMethod:@"POST" downloadPath:request.resumableDownloadPath requestSerializer:requestSerializer URLString:url parameters:param progress:request.resumableDownloadProgressBlock error:error];
             } else {
-                return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:requestSerializer URLString:url parameters:param constructingBodyWithBlock:constructingBlock error:error];
+                return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:requestSerializer URLString:url parameters:param constructingBodyWithBlock:constructingBlock uploadProgressBlock:request.uploadProgressBlock error:error];
             }
         case FSYTKRequestMethodHEAD:
             return [self dataTaskWithHTTPMethod:@"HEAD" requestSerializer:requestSerializer URLString:url parameters:param error:error];
@@ -477,7 +477,7 @@
                                        URLString:(NSString *)URLString
                                       parameters:(id)parameters
                                            error:(NSError * _Nullable __autoreleasing *)error {
-    return [self dataTaskWithHTTPMethod:method requestSerializer:requestSerializer URLString:URLString parameters:parameters constructingBodyWithBlock:nil error:error];
+    return [self dataTaskWithHTTPMethod:method requestSerializer:requestSerializer URLString:URLString parameters:parameters constructingBodyWithBlock:nil uploadProgressBlock:nil error:error];
 }
 
 - (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
@@ -485,20 +485,21 @@
                                        URLString:(NSString *)URLString
                                       parameters:(id)parameters
                        constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
+                             uploadProgressBlock:(nullable void (^)(NSProgress *uploadProgress))uploadProgressBlock
                                            error:(NSError * _Nullable __autoreleasing *)error {
-    NSMutableURLRequest *request = nil;
-
     if (block) {
-        request = [requestSerializer multipartFormRequestWithMethod:method URLString:URLString parameters:parameters constructingBodyWithBlock:block error:error];
+        NSMutableURLRequest *request = [requestSerializer multipartFormRequestWithMethod:method URLString:URLString parameters:parameters constructingBodyWithBlock:block error:error];
+        __block NSURLSessionUploadTask *uploadTask = [_manager uploadTaskWithStreamedRequest:request progress:uploadProgressBlock completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable _error) {
+            [self handleRequestResult:uploadTask responseObject:responseObject error:_error];
+        }];
+        return uploadTask;
     } else {
-        request = [requestSerializer requestWithMethod:method URLString:URLString parameters:parameters error:error];
+        NSMutableURLRequest *request = [requestSerializer requestWithMethod:method URLString:URLString parameters:parameters error:error];
+        __block NSURLSessionDataTask *dataTask = [_manager dataTaskWithRequest:request uploadProgress:uploadProgressBlock downloadProgress:nil completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *_error) {
+            [self handleRequestResult:dataTask responseObject:responseObject error:_error];
+        }];
+        return dataTask;
     }
-
-    __block NSURLSessionDataTask *dataTask = nil;
-    dataTask = [_manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *_error) {
-        [self handleRequestResult:dataTask responseObject:responseObject error:_error];
-    }];
-    return dataTask;
 }
 
 // 增加methodStr参数 J.J

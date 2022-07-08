@@ -350,6 +350,8 @@ NSString *fileName = [NSString stringWithFormat:@"%ld_iOS.jpg", (long)[[NSDate d
 [MBProgressHUD showLoadingInView:self.view];
 [[FSHTTPClient shared] postRequestWithUrl:@"api/file/upload" parameters:params entityClass:FSFileRespEntity.class constructingBodyBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     [formData appendPartWithFileData:imageData name:@"files[0].file" fileName:fileName mimeType:@"image/jpeg"];
+} uploadProgressBlock:^(NSProgress * _Nonnull uploadProgress) {
+    //更新UI
 } complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
     @strongify(self);
     [MBProgressHUD hidenLoadingInView:self.view];

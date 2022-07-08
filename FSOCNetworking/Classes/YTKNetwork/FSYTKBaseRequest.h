@@ -208,6 +208,9 @@ typedef void(^FSYTKRequestCompletionBlock)(__kindof FSYTKBaseRequest *request);
 ///  You can use this block to track the download progress. See also `resumableDownloadPath`.
 @property (nonatomic, copy, nullable) AFURLSessionTaskProgressBlock resumableDownloadProgressBlock;
 
+///  You can use this block to track the download progress. See also `resumableDownloadPath`.
+@property (nonatomic, copy, nullable) AFURLSessionTaskProgressBlock uploadProgressBlock;
+
 ///  The priority of the request. Effective only on iOS 8+. Default is `YTKRequestPriorityDefault`.
 @property (nonatomic) YTKRequestPriority requestPriority;
 

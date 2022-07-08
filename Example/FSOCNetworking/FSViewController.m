@@ -48,6 +48,24 @@
     //[MBProgressHUD showLoadingInView:self.view];
     [[FSHTTPClient shared] postRequestWithUrl:@"api/file/upload" parameters:params entityClass:FSFileRespEntity.class constructingBodyBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [formData appendPartWithFileData:imageData name:@"files[0].file" fileName:fileName mimeType:@"image/jpeg"];
+    } uploadProgressBlock:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
+        //@strongify(self);
+        //[MBProgressHUD hidenLoadingInView:self.view];
+        if (data.isSuccess) {
+            //处理数据、刷新界面
+            //[self.viewModel handleData:data.modelObject];
+            //[self.tableView reaload];
+        } else {
+            //[MBProgressHUD showToastMessage:data.errMsg];
+        }
+    }];
+    
+    //@weakify(self);
+    //[MBProgressHUD showLoadingInView:self.view];
+    [[FSHTTPClient shared] postRequestWithUrl:@"api/file/upload" parameters:params entityClass:FSFileRespEntity.class constructingBodyBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:imageData name:@"files[0].file" fileName:fileName mimeType:@"image/jpeg"];
     } complateBlock:^(FSNetworkData * _Nonnull data, __kindof FSBaseRequest * _Nonnull request) {
         //@strongify(self);
         //[MBProgressHUD hidenLoadingInView:self.view];
