@@ -173,10 +173,10 @@
     id requestArgument = request.requestArgument;
     if ([requestArgument isKindOfClass:[NSDictionary class]] || !requestArgument) {
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params addEntriesFromDictionary:[self.netParamUtils requestCommonParamsWithUrl:request.requestUrl]];
         if (requestArgument) {
             [params addEntriesFromDictionary:requestArgument];
         }
-        [params addEntriesFromDictionary:[self.netParamUtils requestCommonParamsWithUrl:request.requestUrl]];
         request.fs_requestParams = params;
     }
     
