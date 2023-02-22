@@ -23,6 +23,9 @@ typedef NS_ENUM(NSUInteger, FSConnectErrorType) {
 
 @interface FSNetworkData : NSObject
 
+/// 请求URL
+@property (nonatomic, copy, nullable) NSString *requestURL;
+
 /// 业务请求成功时，为YES, 否则NO
 @property (nonatomic, assign) BOOL isSuccess;
 

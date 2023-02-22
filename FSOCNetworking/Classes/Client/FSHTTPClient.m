@@ -79,6 +79,7 @@
     if (succeed) {
         
         FSNetworkData *data = [[FSNetworkData alloc] init];
+        data.requestURL = request.requestUrl;
         data.isSuccess = YES;
         data.errCode = [NSString stringWithFormat:@"%ld", (long)requestError.code];
         data.errorType = FSConnectErrorType_Unknow;
@@ -141,6 +142,7 @@
     } else {
         
         FSNetworkData *data = [[FSNetworkData alloc] init];
+        data.requestURL = request.requestUrl;
         data.isSuccess = NO;
         data.localReqestError = requestError;
         data.errCode = [NSString stringWithFormat:@"%ld", (long)requestError.code]; //暂时方案，其实没啥用
