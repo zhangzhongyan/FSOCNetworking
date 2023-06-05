@@ -68,8 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSArray<id<FSYTKUrlFilterProtocol>> *urlFilters;
 ///  Cache path filters. See also `FSYTKCacheDirPathFilterProtocol`.
 @property (nonatomic, strong, readonly) NSArray<id<FSYTKCacheDirPathFilterProtocol>> *cacheDirPathFilters;
-///  Security policy will be used by AFNetworking. See also `AFSecurityPolicy`.
-@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
+/////  Security policy will be used by AFNetworking. See also `AFSecurityPolicy`.
+//@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
 ///  Whether to log debug info. Default is NO;
 @property (nonatomic) BOOL debugLogEnabled;
 ///  SessionConfiguration will be used to initialize AFHTTPSessionManager. Default is nil.

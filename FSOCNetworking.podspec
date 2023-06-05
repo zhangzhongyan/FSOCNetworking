@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FSOCNetworking'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = '在AFNetworking基础上，封装YTKRequest，提供更面向业务处理的网络层'
 
 # This description is used to generate tags and improve search results.

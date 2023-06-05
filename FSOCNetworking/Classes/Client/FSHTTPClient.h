@@ -14,6 +14,8 @@
 #import "FSNetServerCodeHandlerProtocol.h"
 #import "FSNetRequestHandlerProtocol.h"
 #import "FSNetServerCommonModelProtocol.h"
+#import "FSNetBaseUrlProtocol.h"
+#import "FSNetSecurityPolicyProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,6 +37,12 @@ typedef void(^FSNetworkCompletedBlock)(FSNetworkData *data,__kindof FSBaseReques
 
 /// 网络状态
 @property (nonatomic, assign) FSNetworkReachabilityStatus reachabilityStatus;
+
+/// 网络地址工具
+@property (nonatomic, strong, nullable) id<FSNetBaseUrlProtocol> baserUrlUtils;
+
+/// 网络安全工具
+@property (nonatomic, strong, nullable) id<FSNetSecurityPolicyProtocol> securityPolicyUtils;
 
 /// 网络打印工具
 @property (nonatomic, strong, nullable) id<FSNetLogProtocol> logUtils;

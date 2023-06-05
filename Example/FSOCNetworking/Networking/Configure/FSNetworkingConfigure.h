@@ -16,9 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 网络配置 */
 + (void)setupNetworkConfig;
 
-/// 网络证书政策
-+ (FSSecurityPolicy *)shareSecurityPolicy;
-
 @end
 
 NS_ASSUME_NONNULL_END

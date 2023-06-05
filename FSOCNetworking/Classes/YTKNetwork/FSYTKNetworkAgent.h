@@ -26,12 +26,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class FSYTKBaseRequest;
+@class AFSecurityPolicy;
 
 ///  FSYTKNetworkAgent is the underlying class that handles actual request generation,
 ///  serialization and response handling.
 @interface FSYTKNetworkAgent : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
+@property (nonatomic, strong, nullable) AFSecurityPolicy *securityPolicy;
+
+//- (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
 ///  Get the shared agent.

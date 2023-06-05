@@ -22,7 +22,6 @@
 //  THE SOFTWARE.
 
 #import "FSYTKBaseRequest.h"
-#import "FSYTKNetworkAgent.h"
 #import "FSYTKNetworkPrivate.h"
 
 NSString *const FSYTKRequestValidationErrorDomain = @"com.FSYTKRequest.validation";
@@ -102,13 +101,15 @@ NSString *const FSYTKRequestValidationErrorDomain = @"com.FSYTKRequest.validatio
 
 - (void)start {
     [self toggleAccessoriesWillStartCallBack];
-    [[FSYTKNetworkAgent sharedAgent] addRequest:self];
+    FSYTKNetworkAgent *agent = self.requestNetworkAgentBlock? self.requestNetworkAgentBlock(): [FSYTKNetworkAgent sharedAgent];
+    [agent addRequest:self];
 }
 
 - (void)stop {
     [self toggleAccessoriesWillStopCallBack];
     self.delegate = nil;
-    [[FSYTKNetworkAgent sharedAgent] cancelRequest:self];
+    FSYTKNetworkAgent *agent = self.requestNetworkAgentBlock? self.requestNetworkAgentBlock(): [FSYTKNetworkAgent sharedAgent];
+    [agent cancelRequest:self];
     [self toggleAccessoriesDidStopCallBack];
 }
 

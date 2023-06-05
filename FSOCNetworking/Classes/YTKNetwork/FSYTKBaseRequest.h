@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
+#import "FSYTKNetworkAgent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -213,6 +214,9 @@ typedef void(^FSYTKRequestCompletionBlock)(__kindof FSYTKBaseRequest *request);
 
 ///  The priority of the request. Effective only on iOS 8+. Default is `YTKRequestPriorityDefault`.
 @property (nonatomic) YTKRequestPriority requestPriority;
+
+///  Custom requestNetworkAgent
+@property (nonatomic, strong, nullable) FSYTKNetworkAgent *(^requestNetworkAgentBlock)(void);
 
 ///  Set completion callbacks
 - (void)setCompletionBlockWithSuccess:(nullable FSYTKRequestCompletionBlock)success

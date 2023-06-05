@@ -37,8 +37,13 @@
 
 #define kFSYTKNetworkIncompleteDownloadFolderName @"FSIncomplete"
 
+@interface FSYTKNetworkAgent ()
+
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
+
+@end
+
 @implementation FSYTKNetworkAgent {
-    AFHTTPSessionManager *_manager;
     FSYTKNetworkConfig *_config;
     AFJSONResponseSerializer *_jsonResponseSerializer;
     AFXMLParserResponseSerializer *_xmlParserResponseSerialzier;
@@ -62,18 +67,10 @@
     self = [super init];
     if (self) {
         _config = [FSYTKNetworkConfig sharedConfig];
-        /** J.J Modify  */
-        _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:_config.baseUrl?:@""] sessionConfiguration:_config.sessionConfiguration];
         _requestsRecord = [NSMutableDictionary dictionary];
         _processingQueue = dispatch_queue_create("com.yuantiku.networkagent.processing", DISPATCH_QUEUE_CONCURRENT);
         _allStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(100, 500)];
         pthread_mutex_init(&_lock, NULL);
-
-        _manager.securityPolicy = _config.securityPolicy;
-        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        // Take over the status code validation
-        _manager.responseSerializer.acceptableStatusCodes = _allStatusCodes;
-        _manager.completionQueue = _processingQueue;
     }
     return self;
 }
@@ -202,7 +199,7 @@
     NSURLRequest *customUrlRequest= [request buildCustomUrlRequest];
     if (customUrlRequest) {
         __block NSURLSessionDataTask *dataTask = nil;
-        dataTask = [_manager dataTaskWithRequest:customUrlRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        dataTask = [self.manager dataTaskWithRequest:customUrlRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             [self handleRequestResult:dataTask responseObject:responseObject error:error];
         }];
         request.requestTask = dataTask;
@@ -489,13 +486,13 @@
                                            error:(NSError * _Nullable __autoreleasing *)error {
     if (block) {
         NSMutableURLRequest *request = [requestSerializer multipartFormRequestWithMethod:method URLString:URLString parameters:parameters constructingBodyWithBlock:block error:error];
-        __block NSURLSessionUploadTask *uploadTask = [_manager uploadTaskWithStreamedRequest:request progress:uploadProgressBlock completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable _error) {
+        __block NSURLSessionUploadTask *uploadTask = [self.manager uploadTaskWithStreamedRequest:request progress:uploadProgressBlock completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable _error) {
             [self handleRequestResult:uploadTask responseObject:responseObject error:_error];
         }];
         return uploadTask;
     } else {
         NSMutableURLRequest *request = [requestSerializer requestWithMethod:method URLString:URLString parameters:parameters error:error];
-        __block NSURLSessionDataTask *dataTask = [_manager dataTaskWithRequest:request uploadProgress:uploadProgressBlock downloadProgress:nil completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *_error) {
+        __block NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request uploadProgress:uploadProgressBlock downloadProgress:nil completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *_error) {
             [self handleRequestResult:dataTask responseObject:responseObject error:_error];
         }];
         return dataTask;
@@ -542,7 +539,7 @@
         // Even though we try to validate the resumeData, this may still fail and raise excecption.
         if (canBeResumed) {
             @try {
-                downloadTask = [_manager downloadTaskWithResumeData:data progress:downloadProgressBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+                downloadTask = [self.manager downloadTaskWithResumeData:data progress:downloadProgressBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
                     return [NSURL fileURLWithPath:downloadTargetPath isDirectory:NO];
                 } completionHandler:
                                 ^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
@@ -556,7 +553,7 @@
         }
     }
     if (!resumeSucceeded) {
-        downloadTask = [_manager downloadTaskWithRequest:urlRequest progress:downloadProgressBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        downloadTask = [self.manager downloadTaskWithRequest:urlRequest progress:downloadProgressBlock destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
             return [NSURL fileURLWithPath:downloadTargetPath isDirectory:NO];
         } completionHandler:
                         ^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
@@ -595,15 +592,18 @@
 #pragma mark - Testing
 
 - (AFHTTPSessionManager *)manager {
+    if (!_manager) {
+        _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:_config.baseUrl?:@""] sessionConfiguration:_config.sessionConfiguration];
+        _manager.securityPolicy = self.securityPolicy ?: [AFSecurityPolicy defaultPolicy];
+        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        // Take over the status code validation
+        _manager.responseSerializer.acceptableStatusCodes = _allStatusCodes;
+        _manager.completionQueue = _processingQueue;
+    }
     return _manager;
 }
 
-- (void)resetURLSessionManager {
-    _manager = [AFHTTPSessionManager manager];
-}
-
 - (void)resetURLSessionManagerWithConfiguration:(NSURLSessionConfiguration *)configuration {
-    _manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
 }
 
 @end

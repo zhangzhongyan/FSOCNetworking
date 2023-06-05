@@ -14,26 +14,26 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - FSOCNetworking (1.0.2):
-    - FSOCNetworking/Client (= 1.0.2)
-    - FSOCNetworking/Model (= 1.0.2)
-    - FSOCNetworking/Request (= 1.0.2)
-    - FSOCNetworking/Security (= 1.0.2)
-    - FSOCNetworking/Utils (= 1.0.2)
-    - FSOCNetworking/YTKNetwork (= 1.0.2)
-  - FSOCNetworking/Client (1.0.2):
+  - FSOCNetworking (1.0.6):
+    - FSOCNetworking/Client (= 1.0.6)
+    - FSOCNetworking/Model (= 1.0.6)
+    - FSOCNetworking/Request (= 1.0.6)
+    - FSOCNetworking/Security (= 1.0.6)
+    - FSOCNetworking/Utils (= 1.0.6)
+    - FSOCNetworking/YTKNetwork (= 1.0.6)
+  - FSOCNetworking/Client (1.0.6):
     - FSOCNetworking/Request
     - FSOCNetworking/Utils
     - FSOCUtils/JSONUtils
     - MJExtension
-  - FSOCNetworking/Model (1.0.2)
-  - FSOCNetworking/Request (1.0.2):
+  - FSOCNetworking/Model (1.0.6)
+  - FSOCNetworking/Request (1.0.6):
     - FSOCNetworking/Model
     - FSOCNetworking/YTKNetwork
-  - FSOCNetworking/Security (1.0.2):
+  - FSOCNetworking/Security (1.0.6):
     - AFNetworking
-  - FSOCNetworking/Utils (1.0.2)
-  - FSOCNetworking/YTKNetwork (1.0.2):
+  - FSOCNetworking/Utils (1.0.6)
+  - FSOCNetworking/YTKNetwork (1.0.6):
     - AFNetworking (~> 4.0.1)
   - FSOCUtils/JSONUtils (1.0.2):
     - MJExtension
@@ -55,11 +55,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  FSOCNetworking: d86b0d3de6c60a1838018540b9aa1a00916a9a10
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  FSOCNetworking: b56347b6c029d91c23fdbc85b3fd8b190ed0641b
   FSOCUtils: e8661f91c6e56c7d10893ff93ffb48f09ebd97ed
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
 
 PODFILE CHECKSUM: a3d842b2dbc9fecc1350245c86db68d5e23b7164
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

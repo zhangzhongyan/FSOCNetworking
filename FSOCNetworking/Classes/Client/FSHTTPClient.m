@@ -14,6 +14,8 @@
 
 @interface FSHTTPClient ()
 
+@property (nonatomic, strong) FSYTKNetworkAgent *networkAgent;
+
 @end
 
 @implementation FSHTTPClient
@@ -188,7 +190,13 @@
         [self.logUtils.class performSelector:@selector(logStartRequest:) withObject:request];
     }
             
+    /** 网络安全工具 */
     __weak __typeof__(self) weakSelf = self;
+    request.requestNetworkAgentBlock = ^FSYTKNetworkAgent * _Nonnull{
+        __strong __typeof__(self) self = weakSelf;
+        return self.networkAgent;
+    };
+    
     [request startWithCompletionBlockWithSuccess:^(__kindof FSBaseRequest * _Nonnull request) {
         __strong __typeof__(self) self = weakSelf;
         
@@ -227,5 +235,17 @@
     }];
 }
 
+#pragma mark - property
+
+- (FSYTKNetworkAgent *)networkAgent
+{
+    if (!_networkAgent) {
+        _networkAgent = [[FSYTKNetworkAgent alloc] init];
+        if (self.securityPolicyUtils) {
+            _networkAgent.securityPolicy = [self.securityPolicyUtils requestSecurityPolicy];
+        }
+    }
+    return _networkAgent;
+}
 
 @end
