@@ -100,9 +100,8 @@ FSNetworkData：网络响应模型
 
 + (void)setupNetworkConfig {
 
-    FSYTKNetworkConfig.sharedConfig.securityPolicy = [FSNetworkingConfigure shareSecurityPolicy];
-
     FSHTTPClient.shared.logUtils = [[FSNetLogUtils alloc] init];
+    FSHTTPClient.shared.securityPolicyUtils = [[FSNetSecurityPolicyUtils alloc] init];
     FSHTTPClient.shared.netParamUtils = [[FSNetParamUtils alloc] init];
     FSHTTPClient.shared.netServerCommonModelUtils = [[FSNetCommonModelUtils alloc] init];
     FSHTTPClient.shared.netServerCodeHandler = [[FSNetServerCodeHandler alloc] init];
