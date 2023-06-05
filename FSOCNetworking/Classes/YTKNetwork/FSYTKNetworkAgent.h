@@ -22,6 +22,7 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "FSYTKNetworkConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///  FSYTKNetworkAgent is the underlying class that handles actual request generation,
 ///  serialization and response handling.
 @interface FSYTKNetworkAgent : NSObject
+
+@property (nonatomic, strong) FSYTKNetworkConfig *config;
 
 @property (nonatomic, strong, nullable) AFSecurityPolicy *securityPolicy;
 

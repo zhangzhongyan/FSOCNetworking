@@ -400,8 +400,10 @@ static dispatch_queue_t fsytkrequest_cache_writing_queue() {
     NSString *pathOfLibrary = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [pathOfLibrary stringByAppendingPathComponent:@"LazyRequestCache"];
 
+    
     // Filter cache base path
-    NSArray<id<FSYTKCacheDirPathFilterProtocol>> *filters = [[FSYTKNetworkConfig sharedConfig] cacheDirPathFilters];
+    FSYTKNetworkAgent *agent = self.requestNetworkAgentBlock? self.requestNetworkAgentBlock(): [FSYTKNetworkAgent sharedAgent];
+    NSArray<id<FSYTKCacheDirPathFilterProtocol>> *filters = [agent.config cacheDirPathFilters];
     if (filters.count > 0) {
         for (id<FSYTKCacheDirPathFilterProtocol> f in filters) {
             path = [f filterCacheDirPath:path withRequest:self];
@@ -414,7 +416,8 @@ static dispatch_queue_t fsytkrequest_cache_writing_queue() {
 
 - (NSString *)cacheFileName {
     NSString *requestUrl = [self requestUrl];
-    NSString *baseUrl = [FSYTKNetworkConfig sharedConfig].baseUrl;
+    FSYTKNetworkAgent *agent = self.requestNetworkAgentBlock? self.requestNetworkAgentBlock(): [FSYTKNetworkAgent sharedAgent];
+    NSString *baseUrl = agent.config.baseUrl;
     id argument = [self cacheFileNameFilterForRequestArgument:[self requestArgument]];
     NSString *requestInfo = [NSString stringWithFormat:@"Method:%ld Host:%@ Url:%@ Argument:%@",
                              (long)[self requestMethod], baseUrl, requestUrl, argument];

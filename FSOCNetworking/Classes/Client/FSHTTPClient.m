@@ -244,6 +244,9 @@
         if (self.securityPolicyUtils) {
             _networkAgent.securityPolicy = [self.securityPolicyUtils requestSecurityPolicy];
         }
+        if (self.baserUrlUtils) {
+            _networkAgent.config.baseUrl = [self.baserUrlUtils baseURL];
+        }
     }
     return _networkAgent;
 }

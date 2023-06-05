@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///  to form and filter requests, as well as caching response.
 @interface FSYTKNetworkConfig : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
+//- (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
 ///  Return a shared config object.

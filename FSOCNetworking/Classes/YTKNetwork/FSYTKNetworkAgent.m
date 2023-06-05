@@ -22,7 +22,6 @@
 //  THE SOFTWARE.
 
 #import "FSYTKNetworkAgent.h"
-#import "FSYTKNetworkConfig.h"
 #import "FSYTKNetworkPrivate.h"
 #import <pthread/pthread.h>
 
@@ -44,7 +43,6 @@
 @end
 
 @implementation FSYTKNetworkAgent {
-    FSYTKNetworkConfig *_config;
     AFJSONResponseSerializer *_jsonResponseSerializer;
     AFXMLParserResponseSerializer *_xmlParserResponseSerialzier;
     NSMutableDictionary<NSNumber *, FSYTKBaseRequest *> *_requestsRecord;
@@ -66,7 +64,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _config = [FSYTKNetworkConfig sharedConfig];
+        _config = [[FSYTKNetworkConfig alloc] init];
         _requestsRecord = [NSMutableDictionary dictionary];
         _processingQueue = dispatch_queue_create("com.yuantiku.networkagent.processing", DISPATCH_QUEUE_CONCURRENT);
         _allStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(100, 500)];
@@ -601,6 +599,10 @@
         _manager.completionQueue = _processingQueue;
     }
     return _manager;
+}
+
+- (void)resetURLSessionManager {
+    
 }
 
 - (void)resetURLSessionManagerWithConfiguration:(NSURLSessionConfiguration *)configuration {
