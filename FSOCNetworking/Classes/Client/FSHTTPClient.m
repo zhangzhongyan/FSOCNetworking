@@ -35,8 +35,14 @@
     self = [super init];
     if (self) {
         [self setupAFNReachability];
+        [self setupNotify];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Private Methods
@@ -44,8 +50,22 @@
 - (void)setupAFNReachability {
     
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyReachabilityStatusNotify object:@(status)];
+    }];
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+}
+
+- (void)setupNotify
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReachabilityStatusNotify:) name:kNotifyReachabilityStatusNotify object:nil];
+}
+
+- (void)handleReachabilityStatusNotify:(NSNotification *)noti
+{
+    if ([noti.object isKindOfClass:NSNumber.class]) {
+        NSNumber *status = noti.object;
         // 一共有四种状态
-        switch (status) {
+        switch (status.integerValue) {
             case AFNetworkReachabilityStatusNotReachable:
                 self.reachabilityStatus = FSNetworkReachabilityStatusNotReachable;
                 NSLog(@"AFNetworkReachability Not Reachable");
@@ -64,9 +84,7 @@
                 NSLog(@"AFNetworkReachability Unknown");
                 break;
         }
-        
-    }];
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    }
 }
 
 #pragma mark -- EVNetworkData
@@ -100,9 +118,16 @@
                 id jsonObject = request.responseJSONObject;
                 
                 //键值映射
-                if (netServerCommonModelUtils) {
+                if (netServerCommonModelUtils && [jsonObject isKindOfClass:NSDictionary.class]) {
+                    jsonObject = [NSMutableDictionary dictionaryWithDictionary:jsonObject];
                     NSDictionary *mapDict = [netServerCommonModelUtils mapingDictForServerCommonModel];
-                    [FSServerCommonModel setFSMapingDict:mapDict];
+                    for (NSString *key in mapDict) {
+                        NSString *value = [mapDict objectForKey:key];
+                        id targetValue = [jsonObject objectForKey:value];
+                        if (targetValue) {
+                            [jsonObject setObject:targetValue forKey:key];
+                        }
+                    }
                 }
                 
                 FSServerCommonModel *commonModel = [FSServerCommonModel fs_objectWithKeyValues:jsonObject];

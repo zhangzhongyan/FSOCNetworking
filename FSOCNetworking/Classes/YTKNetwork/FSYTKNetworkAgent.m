@@ -45,7 +45,7 @@
 @implementation FSYTKNetworkAgent {
     AFJSONResponseSerializer *_jsonResponseSerializer;
     AFXMLParserResponseSerializer *_xmlParserResponseSerialzier;
-    NSMutableDictionary<NSNumber *, FSYTKBaseRequest *> *_requestsRecord;
+    NSMutableDictionary<NSString *, FSYTKBaseRequest *> *_requestsRecord;
 
     dispatch_queue_t _processingQueue;
     pthread_mutex_t _lock;
@@ -260,7 +260,7 @@
     Unlock();
     if (allKeys && allKeys.count > 0) {
         NSArray *copiedKeys = [allKeys copy];
-        for (NSNumber *key in copiedKeys) {
+        for (NSString *key in copiedKeys) {
             Lock();
             FSYTKBaseRequest *request = _requestsRecord[key];
             Unlock();
@@ -277,7 +277,7 @@
     Unlock();
     if (allKeys && allKeys.count > 0) {
         NSArray *copiedKeys = [allKeys copy];
-        for (NSNumber *key in copiedKeys) {
+        for (NSString *key in copiedKeys) {
             Lock();
             FSYTKBaseRequest *request = _requestsRecord[key];
             Unlock();
@@ -313,7 +313,7 @@
 
 - (void)handleRequestResult:(NSURLSessionTask *)task responseObject:(id)responseObject error:(NSError *)error {
     Lock();
-    FSYTKBaseRequest *request = _requestsRecord[@(task.taskIdentifier)];
+    FSYTKBaseRequest *request = _requestsRecord[[FSYTKNetworkAgent taskKeyWithTask:task]];
     Unlock();
 
     // When the request is cancelled and removed from records, the underlying
@@ -454,15 +454,20 @@
 
 - (void)addRequestToRecord:(FSYTKBaseRequest *)request {
     Lock();
-    _requestsRecord[@(request.requestTask.taskIdentifier)] = request;
+    _requestsRecord[[FSYTKNetworkAgent taskKeyWithTask:request.requestTask]] = request;
     Unlock();
 }
 
 - (void)removeRequestFromRecord:(FSYTKBaseRequest *)request {
     Lock();
-    [_requestsRecord removeObjectForKey:@(request.requestTask.taskIdentifier)];
+    [_requestsRecord removeObjectForKey:[FSYTKNetworkAgent taskKeyWithTask:request.requestTask]];
     FSYTKLog(@"Request queue size = %zd", [_requestsRecord count]);
     Unlock();
+}
+
++ (NSString *)taskKeyWithTask:(NSURLSessionTask *)task
+{
+    return [NSString stringWithFormat:@"%ld_%@", task.taskIdentifier, task];
 }
 
 #pragma mark -
