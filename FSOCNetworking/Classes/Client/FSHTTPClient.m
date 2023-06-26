@@ -12,6 +12,8 @@
 #import <FSOCUtils/NSObject+FSMJKeyValue.h>
 #import <MJExtension/MJExtension.h>
 
+static NSString * const kNotifyReachabilityStatusNotify = @"kNotifyReachabilityStatusNotify";
+
 @interface FSHTTPClient ()
 
 @property (nonatomic, strong) FSYTKNetworkAgent *networkAgent;
